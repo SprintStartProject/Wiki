@@ -57,4 +57,4 @@
 
 ## Links
 
-- [ADR Index](../adr-index.rst)
+- [ADR Index](adr-index.md)
