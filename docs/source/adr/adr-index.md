@@ -15,10 +15,11 @@ that led to it, and the consequences of the decision.
 | ADR | Title | Status |
 |---|---|---|
 | [ADR-NNN-template](ADR-NNN-template.md) | Template | ✅ Accepted |
-
+| [ADR-001-ai-python-toolchain](ADR-001-ai-python-toolchain.md) | sprintstart-ai python toolchain | ✅ Accepted |
 ```{toctree}
 :hidden:
 :caption: ADR Files
 
 ADR-NNN-template
+ADR-001-ai-python-toolchain
 ```
