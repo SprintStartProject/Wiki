@@ -7,8 +7,8 @@ that led to it, and the consequences of the decision.
 
 1. Copy `ADR-NNN-template.md` to `ADR-NNN-<kebab-case-title>.md`
 2. Fill in all sections
-3. Add a row to the index table below
-4. Open a PR – ADRs are reviewed like code
+3. Add a row to the index table below and the toctree
+4. Open a PR
 
 ## ADR Index
 
