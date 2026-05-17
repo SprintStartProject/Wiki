@@ -12,7 +12,7 @@ Contents
    :maxdepth: 2
    :caption: Definition of Done
 
-   definition-of-done
+   dev-manuals/definition-of-done
 
 .. toctree::
    :maxdepth: 2

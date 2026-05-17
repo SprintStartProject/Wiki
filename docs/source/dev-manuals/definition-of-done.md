@@ -1,7 +1,6 @@
 # Definition of Done
 
-Copy the section below into every Pull Request description. Tick what applies,
-mark **N/A** what doesn't.
+Copy the section below into every Pull Request description. Tick what applies or leave unchecked if it doesnt apply.
 
 ---
 
@@ -22,7 +21,7 @@ mark **N/A** what doesn't.
 - [ ] CI green: lint, type-check, unit tests, build, secret-scan
 - [ ] No secrets / tokens / credentials in the diff
 - [ ] No new `TODO` / `FIXME` without a follow-up issue
-- [ ] Docs updated where applicable (readthedocs / ADR / OpenAPI / `README.md`)
+- [ ] Docs updated if behavior, API, config, or architecture changed
 - [ ] **No regression** of other NFR baselines (a11y / perf / security)
 
 ---
@@ -33,7 +32,7 @@ mark **N/A** what doesn't.
 
 - [ ] ≥ 1 **black-box test** that exercises the acceptance criteria
   *e.g. upload a markdown file, then assert the chat answer cites it*
-- [ ] **Demoable** in the Sprint Review
+
 
 **Non-functional / Mixed PR:**
 
