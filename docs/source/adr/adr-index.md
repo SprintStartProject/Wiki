@@ -16,7 +16,10 @@ that led to it, and the consequences of the decision.
 |---|---|---|
 | [ADR-NNN-template](ADR-NNN-template.md) | Template | ✅ Accepted |
 | [ADR-001-ai-python-toolchain](ADR-001-ai-python-toolchain.md) | sprintstart-ai python toolchain | ✅ Accepted |
-| [ADR-002-backend-architecture](ADR-002-backend-architecture.md) | sprintstart-backend architecture | ✅ Accepted |
+| [ADR-002-sprintstart-backend-architecture](ADR-002-sprintstart-backend-architecture.md) | sprintstart-backend architecture | ✅ Accepted |
+| [ADR-003-sprintstart-backend-event-based-communication](ADR-003-sprintstart-backend-event-based-communication.md) | sprintstart-backend event based communication | ✅ Accepted |
+| [ADR-004-sprintstart-backend-module-architecture](ADR-004-sprintstart-backend-module-architecture.md) | sprintstart-backend module architecture | ✅ Accepted |
+| [ADR-005-sprintstart-backend-language-choice](ADR-005-sprintstart-backend-language-choice.md) | sprintstart-backend language choice | ✅ Accepted |
 ```{toctree}
 :hidden:
 :caption: ADR Files
