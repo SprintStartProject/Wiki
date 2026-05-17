@@ -90,7 +90,7 @@ requiring a distributed system. It also integrates naturally with Spring Applica
 ## Links
 
 - [ADR Index](adr-index.md)
-- [ADR-003: Event-Based Inter-Module Communication](ADR-003-event-based-communication.md)
-- [ADR-004: Backend Module Structure](ADR-004-module-structure.md)
-- [ADR-005: Kotlin as Primary Language](ADR-005-kotlin.md)
+- [ADR-003: Event-Based Inter-Module Communication](ADR-003-sprintstart-backend-event-based-communication.md)
+- [ADR-004: Backend Module Structure](ADR-004-sprintstart-backend-module-structure.md)
+- [ADR-005: Kotlin as Primary Language](ADR-005-sprintstart-backend-language-choice.md)
 - [Spring Modulith Reference Documentation](https://docs.spring.io/spring-modulith/reference/)
