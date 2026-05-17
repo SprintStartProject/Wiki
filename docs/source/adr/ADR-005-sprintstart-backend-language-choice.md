@@ -91,6 +91,6 @@ Spring has first-class Kotlin support, including Kotlin-specific DSLs and extens
 ## Links
 
 - [ADR Index](adr-index.md)
-- [ADR-002: Spring Modulith as Application Framework](ADR-002-spring-modulith.md)
+- [ADR-002: Spring Modulith as Application Framework](ADR-002-sprintstart-backend-architecture.md)
 - [Kotlin + Spring Boot Documentation](https://docs.spring.io/spring-framework/reference/languages/kotlin.html)
 - [Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html)
