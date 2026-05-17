@@ -1,15 +1,13 @@
 Welcome to SprintStart documentation!
-===================================
+======================================
 
 .. note::
 
    This project is under active development.
 
-Contents
---------
-
 .. toctree::
-   :maxdepth: 2
-   :caption: Architecture
+   :maxdepth: 1
+   :hidden:
 
-   adr/adr-index
+   adr/index
+   dev-manuals/index
