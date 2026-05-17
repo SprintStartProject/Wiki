@@ -98,6 +98,6 @@ consciously per listener and documented inline.
 ## Links
 
 - [ADR Index](adr-index.md)
-- [ADR-002: Spring Modulith as Application Framework](ADR-002-spring-modulith.md)
-- [ADR-004: Backend Module Structure](ADR-004-module-structure.md)
+- [ADR-002: Spring Modulith as Application Framework](ADR-002-sprintstart-backend-architecture.md)
+- [ADR-004: Backend Module Structure](ADR-004-sprintstart-backend-module-structure.md)
 - [Spring Modulith — Application Events](https://docs.spring.io/spring-modulith/reference/events.html)
