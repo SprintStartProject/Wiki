@@ -6,8 +6,6 @@ Welcome to SprintStart documentation!
    This project is under active development.
 
 .. toctree::
-   :maxdepth: 1
-   :hidden:
 
    adr/index
    dev-manuals/index
