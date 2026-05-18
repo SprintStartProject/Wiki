@@ -9,4 +9,5 @@ organized by topic.
 :caption: Contents
 
 testing/testing-index
+definition-of-done
 ```
