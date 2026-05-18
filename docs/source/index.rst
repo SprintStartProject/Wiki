@@ -10,6 +10,12 @@ Contents
 
 .. toctree::
    :maxdepth: 2
+   :caption: Working Agreements
+
+   dev-manuals/working-agreements
+
+.. toctree::
+   :maxdepth: 2
    :caption: Definition of Done
 
    dev-manuals/definition-of-done
