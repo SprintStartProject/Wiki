@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| **Status** | `Proposed`  |
+| **Status** | `Accepted`  |
 | **Date** | 2026-05-18 |
 | **Deciders** | AI Team |
 | **Supersedes** | None |
