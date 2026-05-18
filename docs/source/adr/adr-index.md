@@ -16,6 +16,7 @@ that led to it, and the consequences of the decision.
 |---|---|---|
 | [ADR-NNN-template](ADR-NNN-template.md) | Template | ✅ Accepted |
 | [ADR-001-ai-python-toolchain](ADR-001-ai-python-toolchain.md) | sprintstart-ai python toolchain | ✅ Accepted |
+|[ADR-004-ai-type-checker](ADR-004-ai-type-checker.md) | sprintstart-ai python type checker | ✅ Accepted |
 ```{toctree}
 :hidden:
 :caption: ADR Files
