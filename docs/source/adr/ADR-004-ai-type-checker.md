@@ -135,5 +135,5 @@ Although newer tools such as `ty` are promising, they are still too experimental
 
 ## Links
 
-- [ADR Index](adr-index.md)
+- [ADR Index](index.md)
 - https://microsoft.github.io/pyright/

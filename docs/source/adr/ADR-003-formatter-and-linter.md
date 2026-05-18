@@ -137,5 +137,5 @@ CI execution speed.
 
 ## Links
 
-- [ADR Index](adr-index.md)
+- [ADR Index](index.md)
 - [sprintstart-ai](https://github.com/SprintStartProject/sprintstart-ai)
