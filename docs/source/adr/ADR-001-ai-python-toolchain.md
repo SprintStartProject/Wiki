@@ -122,5 +122,5 @@ We choose to combine it with uv as the package manager, as it brings everything 
 
 ## Links
 
-- [ADR Index](adr-index.md)
+- [ADR Index](index.md)
 - [sprintstart-ai](https://github.com/SprintStartProject/sprintstart-ai)
