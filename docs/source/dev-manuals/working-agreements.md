@@ -14,17 +14,24 @@ is enforced.
 |---|---|---|
 | `main` | Latest working release | Yes — no direct pushes |
 | `dev` | Current sprint integration branch | Yes — no direct pushes |
-| `feature/<issue>-<short-name>` | One feature or fix; created per issue | No |
+| `<type>/<issue>-<short-name>` | One unit of work; `<type>` is `feature`, `fix`, or `docu` | No |
+| `hotfix/<issue>-<short-name>` | Urgent fix to `main`; see § 1.7 | No |
 
 Flow:
 
 ```
-feature/* ──► (PR) ──► dev ──► (PR, merge commit) ──► main
+<type>/* ──► (PR) ──► dev ──► (PR, merge commit) ──► main
 ```
 
 - Branch **from `dev`** for every new piece of work.
-- Branch names: `feature/<issue-number>-<short-name>`
-  *e.g.* `feature/42-onboarding-path-stub`.
+- Branch names: `<type>/<issue-number>-<short-name>` where `<type>` is
+   - `feature` 
+  - `fix`
+   - `docu`
+
+  *e.g.* `feature/42-onboarding-path-stub`,
+  `docu/63-update-readme`.
+- Exceptions that may target `main` directly: see Fast-Track (1.6).
 - One sprint = one `dev → main` merge, executed as a **merge commit** so each
   sprint boundary is explicit in `main`'s history while the dev commits stay
   preserved.
@@ -58,6 +65,26 @@ feature/* ──► (PR) ──► dev ──► (PR, merge commit) ──► ma
 - **CI** runs on every PR.
 
 ---
+
+### 1.6 Fast-Track to `main`
+
+For trivial changes that do not affect product behavior, a PR may target
+`main` directly, bypassing `dev`. 
+
+**Examples:**
+- Documentation, README
+- Typo fixes in user-facing strings
+- Tooling configs (e.g. .gitignore)
+- CI workflow changes that don't alter required checks
+- Reverts of broken merges
+
+
+**Rules:**
+- CI must pass (no exception)
+- After merge to `main`, immediately back-merge `main → dev` to keep
+  branches in sync.
+
+
 
 
 ## 2. Quality enforcement
