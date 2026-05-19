@@ -15,7 +15,7 @@ is enforced.
 | `main` | Latest working release | Yes — no direct pushes |
 | `dev` | Current sprint integration branch | Yes — no direct pushes |
 | `<type>/<issue>-<short-name>` | One unit of work; `<type>` is `feature`, `fix`, or `docu` | No |
-| `hotfix/<issue>-<short-name>` | Urgent fix to `main`; see § 1.7 | No |
+| `hotfix/<issue>-<short-name>` | Urgent fix to `main`; see § 1.6 | No |
 
 Flow:
 
@@ -35,6 +35,8 @@ Flow:
 - One sprint = one `dev → main` merge, executed as a **merge commit** so each
   sprint boundary is explicit in `main`'s history while the dev commits stay
   preserved.
+
+  ![Alternativtext](working_agreements_gitflow.svg)
 
 ### 1.2 Pull Requests
 

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="720"
+     height="510"
+     viewBox="0 0 720 510"
+     font-family="Arial, Helvetica, sans-serif">
+
+  <title>SprintStart Git Workflow per repository</title>
+  <desc>Working agreements git workflow. Each of the three repositories (sprintstart-frontend, sprintstart-backend, sprintstart-ai) follows this same workflow independently. Shows two sprints with feature, fix and docu branches merging via PR to dev, sprint-end merge commits dev to main, and a hotfix between sprints with back-merge to dev.</desc>
+
+  <rect id="background" width="720" height="510" fill="#FFFFFF"/>
+
+  <g id="header">
+    <text x="360" y="24" font-size="15" font-weight="600" text-anchor="middle" fill="#222222">Git Workflow — applies independently per repository</text>
+    <text x="360" y="44" font-size="11" text-anchor="middle" fill="#666666">sprintstart-frontend  ·  sprintstart-backend  ·  sprintstart-ai</text>
+  </g>
+
+  <g id="lane-guides">
+    <line x1="125" y1="165" x2="700" y2="165" stroke="#888780" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.4"/>
+    <line x1="125" y1="305" x2="700" y2="305" stroke="#888780" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.4"/>
+    <line x1="125" y1="370" x2="700" y2="370" stroke="#888780" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.4"/>
+    <line x1="125" y1="435" x2="700" y2="435" stroke="#888780" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.4"/>
+  </g>
+
+  <g id="lane-labels">
+    <g id="label-main">
+      <rect x="15" y="96" width="100" height="28" rx="6" fill="#185FA5"/>
+      <text x="65" y="115" font-size="14" font-weight="500" text-anchor="middle" fill="#FFFFFF">main</text>
+    </g>
+    <g id="label-hotfix">
+      <rect x="15" y="151" width="100" height="28" rx="6" fill="#BA7517"/>
+      <text x="65" y="170" font-size="14" font-weight="500" text-anchor="middle" fill="#FFFFFF">hotfix/*</text>
+    </g>
+    <g id="label-dev">
+      <rect x="15" y="221" width="100" height="28" rx="6" fill="#3B6D11"/>
+      <text x="65" y="240" font-size="14" font-weight="500" text-anchor="middle" fill="#FFFFFF">dev</text>
+    </g>
+    <g id="label-feature">
+      <rect x="15" y="291" width="100" height="28" rx="6" fill="#993556"/>
+      <text x="65" y="310" font-size="14" font-weight="500" text-anchor="middle" fill="#FFFFFF">feature/*</text>
+    </g>
+    <g id="label-fix">
+      <rect x="15" y="356" width="100" height="28" rx="6" fill="#0F6E56"/>
+      <text x="65" y="375" font-size="14" font-weight="500" text-anchor="middle" fill="#FFFFFF">fix/*</text>
+    </g>
+    <g id="label-docu">
+      <rect x="15" y="421" width="100" height="28" rx="6" fill="#534AB7"/>
+      <text x="65" y="440" font-size="14" font-weight="500" text-anchor="middle" fill="#FFFFFF">docu/*</text>
+    </g>
+  </g>
+
+  <g id="branches">
+    <line id="main-line" x1="125" y1="110" x2="700" y2="110" stroke="#185FA5" stroke-width="3.5"/>
+
+    <path id="dev-line" d="M138 110 V 225 Q 138 235 158 235 H 700" stroke="#3B6D11" stroke-width="3.5" fill="none"/>
+
+    <path id="sprint1-feature" d="M165 235 V 295 Q 165 305 175 305 H 225 Q 235 305 235 295 V 235" stroke="#993556" stroke-width="3.5" fill="none"/>
+    <path id="sprint1-fix" d="M180 235 V 360 Q 180 370 190 370 H 265 Q 275 370 275 360 V 235" stroke="#0F6E56" stroke-width="3.5" fill="none"/>
+    <path id="sprint1-docu" d="M195 235 V 425 Q 195 435 205 435 H 310 Q 320 435 320 425 V 235" stroke="#534AB7" stroke-width="3.5" fill="none"/>
+
+    <path id="sprint1-merge" d="M340 235 V 120 Q 340 110 355 110" stroke="#3B6D11" stroke-width="3" fill="none"/>
+
+    <path id="hotfix-branch" d="M395 110 V 155 Q 395 165 405 165 H 455 Q 465 165 465 155 V 110" stroke="#BA7517" stroke-width="3.5" fill="none"/>
+    <path id="hotfix-backmerge" d="M485 110 V 225 Q 485 235 500 235" stroke="#BA7517" stroke-width="2.5" fill="none" stroke-dasharray="5 3"/>
+
+    <path id="sprint2-feature" d="M520 235 V 295 Q 520 305 530 305 H 640 Q 650 305 650 295 V 235" stroke="#993556" stroke-width="3.5" fill="none"/>
+    <path id="sprint2-fix" d="M535 235 V 360 Q 535 370 545 370 H 605 Q 615 370 615 360 V 235" stroke="#0F6E56" stroke-width="3.5" fill="none"/>
+    <path id="sprint2-docu" d="M550 235 V 425 Q 550 435 560 435 H 585 Q 595 435 595 425 V 235" stroke="#534AB7" stroke-width="3.5" fill="none"/>
+
+    <path id="sprint2-merge" d="M660 235 V 120 Q 660 110 675 110" stroke="#3B6D11" stroke-width="3" fill="none"/>
+  </g>
+
+  <g id="commits">
+    <circle cx="128" cy="110" r="5" fill="#185FA5"/>
+
+    <circle cx="165" cy="235" r="4" fill="#3B6D11"/>
+    <circle cx="180" cy="235" r="4" fill="#3B6D11"/>
+    <circle cx="195" cy="235" r="4" fill="#3B6D11"/>
+
+    <circle cx="235" cy="235" r="4.5" fill="#FFFFFF" stroke="#993556" stroke-width="2"/>
+    <circle cx="275" cy="235" r="4.5" fill="#FFFFFF" stroke="#0F6E56" stroke-width="2"/>
+    <circle cx="320" cy="235" r="4.5" fill="#FFFFFF" stroke="#534AB7" stroke-width="2"/>
+
+    <circle cx="355" cy="110" r="6" fill="#FFFFFF" stroke="#3B6D11" stroke-width="2.5"/>
+
+    <circle cx="430" cy="165" r="4" fill="#BA7517"/>
+    <circle cx="465" cy="110" r="5" fill="#FFFFFF" stroke="#BA7517" stroke-width="2.5"/>
+    <circle cx="500" cy="235" r="4.5" fill="#FFFFFF" stroke="#BA7517" stroke-width="2"/>
+
+    <circle cx="520" cy="235" r="4" fill="#3B6D11"/>
+    <circle cx="535" cy="235" r="4" fill="#3B6D11"/>
+    <circle cx="550" cy="235" r="4" fill="#3B6D11"/>
+
+    <circle cx="595" cy="235" r="4.5" fill="#FFFFFF" stroke="#534AB7" stroke-width="2"/>
+    <circle cx="615" cy="235" r="4.5" fill="#FFFFFF" stroke="#0F6E56" stroke-width="2"/>
+    <circle cx="650" cy="235" r="4.5" fill="#FFFFFF" stroke="#993556" stroke-width="2"/>
+
+    <circle cx="675" cy="110" r="6" fill="#FFFFFF" stroke="#3B6D11" stroke-width="2.5"/>
+
+    <circle cx="200" cy="305" r="3.5" fill="#993556"/>
+    <circle cx="230" cy="370" r="3.5" fill="#0F6E56"/>
+    <circle cx="260" cy="435" r="3.5" fill="#534AB7"/>
+
+    <circle cx="555" cy="305" r="3.5" fill="#993556"/>
+    <circle cx="595" cy="305" r="3.5" fill="#993556"/>
+    <circle cx="575" cy="370" r="3.5" fill="#0F6E56"/>
+    <circle cx="572" cy="435" r="3.5" fill="#534AB7"/>
+  </g>
+
+  <g id="annotations">
+    <g id="sprint1-marker">
+      <rect x="328" y="65" width="54" height="22" rx="11" fill="#185FA5"/>
+      <text x="355" y="80" font-size="12" font-weight="500" text-anchor="middle" fill="#FFFFFF">Sprint 1</text>
+    </g>
+    <g id="sprint2-marker">
+      <rect x="648" y="65" width="54" height="22" rx="11" fill="#185FA5"/>
+      <text x="675" y="80" font-size="12" font-weight="500" text-anchor="middle" fill="#FFFFFF">Sprint 2</text>
+    </g>
+    <g id="hotfix-marker">
+      <rect x="405" y="186" width="50" height="20" rx="10" fill="#BA7517"/>
+      <text x="430" y="200" font-size="12" font-weight="500" text-anchor="middle" fill="#FFFFFF">hotfix</text>
+    </g>
+    <text id="backmerge-label" x="510" y="200" font-size="12" font-style="italic" fill="#BA7517">back-merge</text>
+  </g>
+
+  <g id="legend">
+    <circle cx="135" cy="488" r="3.5" fill="#666666"/>
+    <text x="145" y="492" font-size="11" fill="#444444">commit</text>
+
+    <circle cx="215" cy="488" r="4" fill="#FFFFFF" stroke="#666666" stroke-width="1.5"/>
+    <text x="226" y="492" font-size="11" fill="#444444">PR merge commit</text>
+
+    <line x1="340" y1="488" x2="360" y2="488" stroke="#666666" stroke-width="2" stroke-dasharray="5 3"/>
+    <text x="365" y="492" font-size="11" fill="#444444">back-merge (main → dev)</text>
+
+    <text x="700" y="492" font-size="10" text-anchor="end" fill="#999999">Working Agreements — sprintstart</text>
+  </g>
+
+</svg>
