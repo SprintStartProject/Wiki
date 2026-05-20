@@ -19,6 +19,10 @@ that led to it, and the consequences of the decision.
 | [ADR-002-backend-architecture](ADR-002-backend-architecture.md) | Backend Architecture | ✅ Accepted |
 | [ADR-003-ai-formatter-and-linter](ADR-003-formatter-and-linter.md) | Formatter and Linter | ✅ Accepted |
 | [ADR-004-ai-type-checker](ADR-004-ai-type-checker.md) | sprintstart-ai python type checker | ✅ Accepted |
+| [ADR-006-sprintstart-backend-architecture](ADR-006-sprintstart-backend-architecture.md) | sprintstart-backend architecture | ✅ Accepted |
+| [ADR-007-sprintstart-backend-event-based-communication](ADR-007-sprintstart-backend-event-based-communication.md) | sprintstart-backend event based communication | ✅ Accepted |
+| [ADR-008-sprintstart-backend-module-architecture](ADR-008-sprintstart-backend-module-architecture.md) | sprintstart-backend module architecture | ✅ Accepted |
+| [ADR-009-sprintstart-backend-language-choice](ADR-009-sprintstart-backend-language-choice.md) | sprintstart-backend language choice | ✅ Accepted |
 
 ```{toctree}
 :hidden:
