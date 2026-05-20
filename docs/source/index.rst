@@ -1,15 +1,19 @@
 Welcome to SprintStart documentation!
-===================================
+======================================
 
 .. note::
 
    This project is under active development.
 
-Contents
---------
+.. toctree::
+   :maxdepth: 2
+   :caption: Working Agreements
+
+   dev-manuals/working-agreements
 
 .. toctree::
    :maxdepth: 2
-   :caption: Architecture
+   :caption: Definition of Done
 
-   adr/adr-index
+   adr/index
+   dev-manuals/index
