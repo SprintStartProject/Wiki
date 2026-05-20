@@ -1,4 +1,4 @@
-# ADR-002: Spring Modulith as Application Framework
+# ADR-006: Spring Modulith as Application Framework
 
 | Field | Value |
 |---|---|
@@ -90,7 +90,7 @@ requiring a distributed system. It also integrates naturally with Spring Applica
 ## Links
 
 - [ADR Index](adr-index.md)
-- [ADR-003: Event-Based Inter-Module Communication](ADR-007-sprintstart-backend-event-based-communication.md)
-- [ADR-004: Backend Module Structure](ADR-008-sprintstart-backend-module-structure.md)
-- [ADR-005: Kotlin as Primary Language](ADR-009-sprintstart-backend-language-choice.md)
+- [ADR-007: Event-Based Inter-Module Communication](ADR-007-sprintstart-backend-event-based-communication.md)
+- [ADR-008: Backend Module Structure](ADR-008-sprintstart-backend-module-structure.md)
+- [ADR-009: Kotlin as Primary Language](ADR-009-sprintstart-backend-language-choice.md)
 - [Spring Modulith Reference Documentation](https://docs.spring.io/spring-modulith/reference/)
