@@ -1,4 +1,4 @@
-# ADR-004: Backend Module Structure
+# ADR-008: Backend Module Structure
 
 | Field | Value |
 |---|---|
@@ -124,6 +124,6 @@ com.example.app
 ## Links
 
 - [ADR Index](adr-index.md)
-- [ADR-002: Spring Modulith as Application Framework](ADR-002-sprintstart-backend-architecture.md)
-- [ADR-003: Event-Based Inter-Module Communication](ADR-003-sprintstart-backend-event-based-architecture.md)
+- [ADR-006: Spring Modulith as Application Framework](ADR-006-sprintstart-backend-architecture.md)
+- [ADR-007: Event-Based Inter-Module Communication](ADR-007-sprintstart-backend-event-based-architecture.md)
 - [Spring Modulith — Module API](https://docs.spring.io/spring-modulith/reference/fundamentals.html#modules.api)
