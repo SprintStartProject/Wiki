@@ -1,4 +1,4 @@
-# ADR-005: Kotlin as Primary Language
+# ADR-009: Kotlin as Primary Language
 
 | Field | Value |
 |---|---|
@@ -91,6 +91,6 @@ Spring has first-class Kotlin support, including Kotlin-specific DSLs and extens
 ## Links
 
 - [ADR Index](adr-index.md)
-- [ADR-002: Spring Modulith as Application Framework](ADR-002-sprintstart-backend-architecture.md)
+- [ADR-006: Spring Modulith as Application Framework](ADR-006-sprintstart-backend-architecture.md)
 - [Kotlin + Spring Boot Documentation](https://docs.spring.io/spring-framework/reference/languages/kotlin.html)
 - [Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html)
