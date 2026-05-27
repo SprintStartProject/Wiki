@@ -87,6 +87,31 @@ For trivial changes that do not affect product behavior, a PR may target
   branches in sync.
 
 
+### 1.7 Release freeze
+
+The day before each Sprint Review (every second Tuesday, **06:00**) the sprint
+goes into **release freeze**: no more feature merges into `dev`. The remaining
+time is for **testing and integration**:
+
+- Each repo does its `dev → main` merge.
+- The three services (backend, frontend, AI) are run together and smoke-tested
+  end to end. This step proves each
+  service still talk to each other.
+- After the merge, tag each repo's `main` with the sprint's release version —
+  the **same tag in all three repos** (*e.g.* `v0.2.0`).
+
+While the freeze is on, if you find a bug:
+
+- **Non-critical?** Either open a GitHub issue for a later sprint, **or** fix it
+  on a branch but **don't merge into the frozen branch** — it lands after the
+  freeze lifts.
+- **Release-blocking?** Fix it now with a minimal diff, 1 review, and green CI,
+  then merge so the demo build is fixed.
+
+The freeze lifts when the next sprint starts.
+
+
+---
 
 
 ## 2. Quality enforcement
