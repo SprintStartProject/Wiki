@@ -1,4 +1,4 @@
-# ADR-005: Secrets Management Strategy
+# ADR-010: Secrets Management Strategy
 
 | Field        | Value          |
 |---|---|
