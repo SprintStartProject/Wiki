@@ -9,4 +9,5 @@ organized by topic.
 testing/testing-index
 definition-of-done
 getting-started-backend
+getting-started-ai
 ```
