@@ -1,12 +1,12 @@
 # ADR-005: Frontend Framework
 
-| Field | Value |
-|---|---|
-| **Status** | `Proposed` |
-| **Date** | 2026-05-19 |
+| Field | Value         |
+|---|---------------|
+| **Status** | `Accepted`    |
+| **Date** | 2026-05-19    |
 | **Deciders** | Frontend Team |
-| **Supersedes** | – |
-| **Superseded by** | – |
+| **Supersedes** | –             |
+| **Superseded by** | –             |
 
 ---
 
