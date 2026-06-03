@@ -1,4 +1,4 @@
-# ADR-006: CI/CD Pipeline
+# ADR-012: CI/CD Pipeline
 
 | Field         | Value       |
 |---|---|
