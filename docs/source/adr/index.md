@@ -27,6 +27,7 @@ that led to it, and the consequences of the decision.
 | [ADR-010-Secrets-Management-Strategy](ADR-010-Secrets-Management-Strategy.md) | Secrets Management Strategy | ✅ Accepted |
 | [ADR-011-frontend-framework](ADR-011-frontend-framework.md) | Frontend Framework | ✅ Accepted |
 | [ADR-012-ci-cd-tooling](ADR-012-ci-cd-tooling.md) | CI/CD Pipeline | ✅ Accepted |
+| [ADR-013-wiki-structure](ADR-013-wiki-structure.md) | Wiki structure and documentation framework | Proposed |
 
 ```{toctree}
 :hidden:
@@ -44,4 +45,5 @@ ADR-009-sprintstart-backend-language-choice
 ADR-010-Secrets-Management-Strategy
 ADR-011-frontend-framework
 ADR-012-ci-cd-tooling
+ADR-013-wiki-structure
 ```
