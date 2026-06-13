@@ -37,4 +37,4 @@ On the Diátaxis map, explanations are classified as *cognition*- and *acquisiti
 
 For more information, see [here](https://diataxis.fr/start-here/).
 
-To understand why we use Diátaxis, see [ADR-013].
+To understand why we use Diátaxis, see [ADR-013 (Wiki structure)](../explanations/adrs/adr-013-wiki-structure.md).

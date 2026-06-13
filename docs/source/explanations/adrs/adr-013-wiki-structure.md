@@ -96,7 +96,7 @@ framework early on can facilitate the process of familiarizing with the way docu
   └── ...
   ```
 
-  For more information, see [here](https://diataxis.fr/start-here/).
+  For more information, see [diataxis-introduction](../diataxis-introduction.md).
 
 ## Decision
 

@@ -12,3 +12,5 @@
 | Architecture Overview | *Explanation* |
 | Diagrams | *Reference* |
 | Guides | *How-to guide* |
+
+For more information on Diátaxis, see [diataxis-introduction](../explanations/diataxis-introduction.md).

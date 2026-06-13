@@ -57,4 +57,4 @@
 
 ## Links
 
-- [ADR Index](index.md)
+- [ADR Index](../../explanations/adrs/index.md)

@@ -8,7 +8,7 @@ Before contributing to the wiki, always ensure to create a seperate branch origi
 
 Before starting to actually write the document, you need to define which Diátaxis class your document belongs to.
 If you are not sure, there is a selection of document types mapped to their corresponding Diátaxis type:
-[document-classification.md](https://github.com/SprintStartProject/Wiki/blob/diataxis-evaluation/docs/document-classification.md).
+[document-classification.md](../references/document-classification.md).
 This decision is important because it actually helps you understand how to best write your document so that it serves
 its purpose.
 
@@ -21,11 +21,11 @@ are likely to be added in the future.
 ## 4. Look for existing templates
 
 If your document belongs to a commonly used artifact type (e.g. ADRs), a template file might exist (usually stored in
-references) that you are expected to use. Tutorials or guides that help you writing such a document might also exist.
+[references](https://github.com/SprintStartProject/Wiki/tree/diataxis-evaluation/docs/source/references)) that you are expected to use. Tutorials or guides that help you writing such a document might also exist.
 
 ## 5. Follow naming conventions
 
-Make sure to follow naming conventions when deciding what to name your document. 
+Make sure to follow naming conventions when deciding what to name your document. You can find them [here](../references/conventions/naming-and-ownership-conventions.md).
 
 ## 6. Create a PR
 
