@@ -36,7 +36,7 @@ Flow:
   sprint boundary is explicit in `main`'s history while the dev commits stay
   preserved.
 
-  ![Alternativtext](working_agreements_gitflow.svg)
+  ![Alternativtext](../assets/working_agreements_gitflow.svg)
 
 ### 1.2 Pull Requests
 
