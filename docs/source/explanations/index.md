@@ -1,0 +1,5 @@
+```{toctree}
+:hidden:
+
+diataxis-introduction
+```

@@ -4,7 +4,7 @@
 
 This page describes how local secrets are handled during development.
 
-For the overall strategy and rationale, see [ADR-010 (Secrets Management Strategy)](https://github.com/SprintStartProject/Wiki/blob/main/docs/source/adr/ADR-010-Secrets-Management-Strategy.md).
+For the overall strategy and rationale, see [ADR-010 (Secrets Management Strategy)](../explanations/adrs/adr-010-secrets-management-strategy.md).
 
 ## Local development
 

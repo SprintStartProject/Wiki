@@ -6,14 +6,35 @@ Welcome to SprintStart documentation!
    This project is under active development.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Working Agreements
+   :maxdepth: 3
+   :caption: Explanations
 
-   dev-manuals/working-agreements
+   explanations/index
+   explanations/adrs/index
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Definition of Done
+   :maxdepth: 3
+   :caption: How-to guides
 
-   adr/index
-   dev-manuals/index
+   how-to-guides/index
+
+.. toctree::
+   :maxdepth: 3
+   :caption: References
+
+   references/index
+   references/conventions/index
+   references/templates/index
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Tutorials
+
+   tutorials/index
+   tutorials/getting-started/index
+
+.. toctree::
+   :maxdepth: 3
+   :caption: UX
+
+   ux/index
