@@ -1,7 +1,7 @@
 # Docs
 
 This repository contains all documentation of SprintStart.
-The documentation uses read the docs and is also hosted by them on [read the docs SprintStart](https://sprintstart.readthedocs.io/en/latest/).
+The documentation uses *Read the Docs* and is also hosted by them on [Read the Docs SprintStart](https://sprintstart.readthedocs.io/en/latest/).
 
 ## Structure
 
@@ -9,16 +9,26 @@ All files in this repo should be written in English and _Markdown_.
 
 It is structured in the following way:
 
-### [`/adr`](adr)
+### [`/explanations`](/docs/source/explanations)
 
-Contains the _Architecture Decision Records_, so which general design decisions have been made, which options were
-possible, which were chosen and why.
+Contains background information on the project and the important architectural decisions that were made.
 
-### [`/dev-manuals`](dev-manuals)
+### [`/how-to-guides`](/docs/source/how-to-guides)
 
-Contains the developer manuals for the given repo or technology, meaning everything a developer needs to know about the
-specific topic to be able to collaborate.
+Contains dev manuals for common procedures.
 
-### [`/user-manuals`](user-manuals)
+### [`/references`](/docs/source/references)
 
-Contains manuals for lecturers and students on how to use the platform.
+Contains guidelines, conventions and templates that can be used as reference works.
+
+### [`/tutorials`](/docs/source/tutorials)
+
+Contains guides on how to get started with *SprintStart* and onboarding material.
+
+### [`/ux`](/docs/source/ux)
+
+Contains frontend usability tests for each sprint.
+
+---
+
+To contribute to the docs, follow the [How to contibute to the Wiki](/docs/source/how-to-guides/how-to-contribute-to-docs.md) guide.
