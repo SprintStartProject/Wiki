@@ -29,6 +29,10 @@ Make sure to follow naming conventions when deciding what to name your document.
 
 ## 6. Create a PR
 
-After finishing writing your document, create a pull request and explain follow-up actions for the assignee(s) (e.g. 
-'update index.md'). You are also adviced to directly assign someone from your team as a reviewer; otherwise, the PR might
+After finishing writing your document, create a pull request and explain follow-up actions for the assignee(s). No matter the document type, these actions should **always** include updating the *index.md* file in the
+corresponding subfolder, and, if a new subfolder was created, add a new index file there. You are also adviced to directly assign someone from your team as a reviewer; otherwise, the PR might
 go unnoticed.
+
+## 7. Delete Branch
+
+After merging into main, delete the branch that was created for adding the document.
