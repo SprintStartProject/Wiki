@@ -16,7 +16,7 @@
 | [adr-011-frontend-framework](adr-011-frontend-framework.md) | Frontend Framework | ✅ Accepted |
 | [adr-012-ci-cd-tooling](adr-012-ci-cd-tooling.md) | CI/CD Pipeline | ✅ Accepted |
 | [adr-013-wiki-structure](adr-013-wiki-structure.md) | Wiki structure and documentation framework | Proposed |
-
+| [adr-014-treesitter-ast-based-code-chunking](adr-014-treesitter-ast-based-code-chunking.md) | AST-Based Code Chunking | ✅ Accepted |
 ```{toctree}
 :hidden:
 
@@ -33,4 +33,5 @@ adr-010-secrets-management-strategy
 adr-011-frontend-framework
 adr-012-ci-cd-tooling
 adr-013-wiki-structure
+adr-014-treesitter-ast-based-code-chunking
 ```
