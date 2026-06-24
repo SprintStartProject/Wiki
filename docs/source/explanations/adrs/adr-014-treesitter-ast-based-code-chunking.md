@@ -1,4 +1,4 @@
-# ADR-00X: Use Tree-sitter for AST-Based Code Chunking
+# ADR-014: Use Tree-sitter for AST-Based Code Chunking
 
 | Field | Value |
 |---|---|
@@ -16,7 +16,7 @@ The ingestion pipeline currently parses source code files using language-specifi
 
 This approach has several limitations:
 
-- Only Python, JavaScript, TypeScript, and Go are supported.
+- Only Python, JavaScript, TypeScript, and Go are supported currently.
 - Parsing relies on heuristic pattern matching rather than actual language syntax.
 - Decorators, annotations, comments, multiline signatures, and other language constructs may be assigned to incorrect chunks.
 - Nested definitions and complex syntax are difficult to handle reliably.
@@ -145,23 +145,6 @@ Keeping the existing regex parser as a fallback minimizes migration risk and ens
 - Increased implementation complexity compared to regex parsing.
 - Slightly increased parsing time during ingestion.
 - Grammar versions must be maintained and updated.
-
-### Follow-up Actions
-
-- Integrate Tree-sitter Python bindings.
-- Add grammars for Python, JavaScript, TypeScript, and Go.
-- Implement AST-based top-level definition extraction.
-- Preserve existing preamble handling.
-- Extend chunk metadata with symbol information.
-- Keep the existing regex parser as fallback.
-- Add tests for:
-  - Decorators and annotations
-  - Multiline signatures
-  - Nested definitions
-  - Empty files
-  - Single-definition files
-  - Large files with multiple definitions
-adr-014-treestitter-ast-based-code-chunking- Benchmark ingestion performance before and after migration.
 
 ---
 
