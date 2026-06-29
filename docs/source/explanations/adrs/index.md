@@ -15,7 +15,7 @@
 | [adr-010-Secrets-Management-Strategy](adr-010-secrets-management-strategy.md) | Secrets Management Strategy | ✅ Accepted |
 | [adr-011-frontend-framework](adr-011-frontend-framework.md) | Frontend Framework | ✅ Accepted |
 | [adr-012-ci-cd-tooling](adr-012-ci-cd-tooling.md) | CI/CD Pipeline | ✅ Accepted |
-| [adr-013-wiki-structure](adr-013-wiki-structure.md) | Wiki structure and documentation framework | Proposed |
+| [adr-013-wiki-structure](adr-013-wiki-structure.md) | Wiki structure and documentation framework | ✅ Accepted |
 | [adr-014-treesitter-ast-based-code-chunking](adr-014-treesitter-ast-based-code-chunking.md) | AST-Based Code Chunking | ✅ Accepted |
 ```{toctree}
 :hidden:
