@@ -17,6 +17,7 @@
 | [adr-012-ci-cd-tooling](adr-012-ci-cd-tooling.md) | CI/CD Pipeline | ✅ Accepted |
 | [adr-013-wiki-structure](adr-013-wiki-structure.md) | Wiki structure and documentation framework | ✅ Accepted |
 | [adr-014-treesitter-ast-based-code-chunking](adr-014-treesitter-ast-based-code-chunking.md) | AST-Based Code Chunking | ✅ Accepted |
+| [adr-015-use-keycloak-authentication-authorization](adr-015-use-keycloak-authentication-authorization.md) | Keycloak auth  | ✅ Accepted |
 ```{toctree}
 :hidden:
 
@@ -34,4 +35,5 @@ adr-011-frontend-framework
 adr-012-ci-cd-tooling
 adr-013-wiki-structure
 adr-014-treesitter-ast-based-code-chunking
+adr-015-use-keycloak-authentication-authorization
 ```
