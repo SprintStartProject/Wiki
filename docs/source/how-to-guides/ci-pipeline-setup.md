@@ -103,6 +103,7 @@ Each repository must execute language-specific quality checks.
 ## Node.js
 
 ```yaml
+- run: npm run format:check
 - run: npm run lint
 ```
 
@@ -138,6 +139,15 @@ Automated tests must run before build verification.
 - run: uv run pytest
 ```
 
+## Frontend
+
+```yaml
+- run: npm run unit
+- run: npm run a11y
+```
+
+`npm run unit` runs the Vitest unit tests, `npm run a11y` runs the accessibility tests (vitest-axe) under `tests/unit/a11y/`.
+
 Tests should fail the workflow if any assertion fails.
 
 ---
@@ -157,6 +167,8 @@ The repository must successfully build.
 ```yaml
 - run: npm run build
 ```
+
+`npm run build` also runs the TypeScript type check (`tsc -b`). In `sprintstart-frontend` the build currently runs before the tests, so a type error fails the pipeline before any test runs.
 
 Purpose:
 

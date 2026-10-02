@@ -10,6 +10,7 @@ the stack is more stable.
 |---|---|---|
 | Unit Tests | Single functions / components | Active |
 | Integration Tests | Interaction between modules | Active |
+| Accessibility Tests | Automated axe checks of frontend components and pages | Active |
 | E2E Tests | Full frontend user flows | Planned |
 | Contract Tests | Frontend ↔ Backend, Backend ↔ AI | Planned |
 
