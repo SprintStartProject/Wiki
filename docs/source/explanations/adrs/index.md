@@ -18,6 +18,7 @@
 | [adr-013-wiki-structure](adr-013-wiki-structure.md) | Wiki structure and documentation framework | ✅ Accepted |
 | [adr-014-treesitter-ast-based-code-chunking](adr-014-treesitter-ast-based-code-chunking.md) | AST-Based Code Chunking | ✅ Accepted |
 | [adr-015-use-keycloak-authentication-authorization](adr-015-use-keycloak-authentication-authorization.md) | Keycloak auth  | ✅ Accepted |
+| [adr-018-frontend-access-control-model](adr-018-frontend-access-control-model.md) | Frontend Access Control Model | ✅ Accepted |
 ```{toctree}
 :hidden:
 
@@ -36,4 +37,5 @@ adr-012-ci-cd-tooling
 adr-013-wiki-structure
 adr-014-treesitter-ast-based-code-chunking
 adr-015-use-keycloak-authentication-authorization
+adr-018-frontend-access-control-model
 ```
