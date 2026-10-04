@@ -169,7 +169,7 @@ Some places still know the connectors individually, and the compiler does not re
 5. **Facets**: `knowledge-base/hooks/useKnowledgeBase.ts` offers the repository facet options only for GITHUB. Extend it if the connector's artifacts belong to a repository.
 6. **Artifact metadata**: `knowledge-base/githubMetadata.ts` parses the metadata of GitHub artifacts. A connector with its own metadata needs a parser and a view (`knowledgeBase.metadataView`) of its own.
 7. **Chat sources**: `chatbot/hooks/useAvailableSources.ts` always offers UPLOAD (`ALWAYS_AVAILABLE`) and the enabled connectors on top. Only touch it if the new system has no connector to enable.
-8. **GITHUB fallbacks**: `ingestionService` and `knowledgeService` fall back to GITHUB where the backend sends no `sourceSystem`. The backend has to send it for the new connector, otherwise its rows show up as GitHub.
+8. **GITHUB fallback**: `ingestionService` falls back to GITHUB where a status row arrives without a `sourceSystem` (`status.sourceSystem ?? "GITHUB"`, covering legacy rows that predate the field), so the backend has to send it for the new connector — otherwise its rows show up as GitHub. The knowledge base has no such fallback: `knowledgeService.getArtifactContent` takes an unused `_sourceSystem` parameter (a vestigial default nothing reads), and the artifact list renders whatever `sourceSystem` the backend sent, so a missing value cannot be relabelled there.
 
 ### 7. Tests
 
