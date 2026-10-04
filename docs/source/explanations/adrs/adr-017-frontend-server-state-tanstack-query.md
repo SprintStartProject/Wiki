@@ -105,7 +105,7 @@ SWR covers the read side similarly, but mutations, invalidation by key prefix an
 - [x] Migrate all `useFetch`, `useLiveFetch`, `useRateLimitedRead` and mutation hooks
 - [x] Add sidebar prefetch (`src/services/routePrefetch.ts`)
 - [ ] Remove `useFetch` itself (it has no callers left, only its result type is still imported by `useQueryFetch`)
-- [ ] Update `docs/FRONTEND_ARCHITECTURE.md` in the frontend repository, which does not mention TanStack Query yet
+- [x] Update `docs/FRONTEND_ARCHITECTURE.md` in the frontend repository (TanStack Query is described in §5.2)
 
 ## Implementation Guidelines
 
@@ -125,10 +125,10 @@ The cache is cleared with `queryClient.clear()` on logout in `AuthProvider`, so 
 
 ### Query keys
 
-All keys come from the factory in `src/services/queryKeys.ts`. Hooks, invalidations and prefetches import keys from there and never write key arrays inline.
+All keys come from the factory in `src/services/queryKeys.ts`. Hooks, invalidations and prefetches import keys from there and do not write key arrays inline. The only exception is the bare prefix `["starter-work", "corpus"]`, which `StarterWorkSection.tsx` invalidates because the factory has no bare key for it.
 
 - Every **project-scoped** key contains the `projectId`.
-- Every **user-scoped** key contains the user's `profile.id`.
+- User-scoped keys contain the user's `profile.id`. The exceptions are `atlassianCredentials.mine`, `attestations.pending` and `knowledgeRequest.mine`: they are implicitly scoped to the current user by the backend and rely on `queryClient.clear()` on logout.
 - Keys are hierarchical, so a prefix like `queryKeys.starterWork.pool()` can invalidate all its children (`poolByStatus(...)`) at once.
 
 ### Which hook to use

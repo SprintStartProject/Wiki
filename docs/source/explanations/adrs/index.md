@@ -18,6 +18,7 @@
 | [adr-013-wiki-structure](adr-013-wiki-structure.md) | Wiki structure and documentation framework | ✅ Accepted |
 | [adr-014-treesitter-ast-based-code-chunking](adr-014-treesitter-ast-based-code-chunking.md) | AST-Based Code Chunking | ✅ Accepted |
 | [adr-015-use-keycloak-authentication-authorization](adr-015-use-keycloak-authentication-authorization.md) | Keycloak auth  | ✅ Accepted |
+| [adr-016-canonical-artifact-schema-v1](adr-016-canonical-artifact-schema-v1.md) | Canonical artifact schema v1 | ✅ Accepted |
 | [adr-017-frontend-server-state-tanstack-query](adr-017-frontend-server-state-tanstack-query.md) | TanStack Query for Frontend Server State | ✅ Accepted |
 ```{toctree}
 :hidden:
@@ -37,5 +38,6 @@ adr-012-ci-cd-tooling
 adr-013-wiki-structure
 adr-014-treesitter-ast-based-code-chunking
 adr-015-use-keycloak-authentication-authorization
+adr-016-canonical-artifact-schema-v1
 adr-017-frontend-server-state-tanstack-query
 ```
