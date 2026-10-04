@@ -4,11 +4,15 @@
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) 24 (the version used by CI and the Docker image). Vite 8 needs at least Node 20.19 or 22.12.
+- [Node.js](https://nodejs.org/) 20.19+ or 22.12+ (the minimum Vite 8 accepts). CI and the Docker image use Node 24, which is the safe choice.
 - npm
 - A running backend and Keycloak (see [Backend and Keycloak](#backend-and-keycloak) below)
 
-> **Note on newer Node versions:** with Node 26, `localStorage` is not available in the Vitest environment and a large part of the unit tests fail. Use Node 24, or run the tests with `NODE_OPTIONS="--localstorage-file=<some temp file>"`.
+> **Note on newer Node versions:** on Node 25 or newer, Node's built-in `localStorage` hides the one jsdom provides and a large part of the unit tests fail. Run the tests with the built-in one switched off:
+>
+> ```bash
+> NODE_OPTIONS=--no-experimental-webstorage npm run test
+> ```
 
 ### Installation
 
@@ -37,6 +41,7 @@ cp .env.example .env
 
 No API or Keycloak URLs have to be configured. The frontend sends all requests to its own origin and they are forwarded from there.
 
+(backend-and-keycloak)=
 ### Backend and Keycloak
 
 The frontend does not work on its own. Login goes through Keycloak and every page loads its data from the backend. The dev server forwards:
@@ -46,7 +51,7 @@ The frontend does not work on its own. Login goes through Keycloak and every pag
 | `/api`, `/v1` | Backend on `http://127.0.0.1:8080` |
 | `/auth` | Keycloak on `http://127.0.0.1:8081` |
 
-The easiest way to get both is the `docker-compose.yaml` in `sprintstart-backend`, which starts the databases, Keycloak and the backend. See [getting-started-backend](getting-started-backend.md) for running the backend locally instead. How to create test users and assign roles in Keycloak is described in the frontend `README.md` under "Authentication & User Setup".
+The easiest way to get both is the `docker-compose.yaml` in `sprintstart-backend`, which starts the databases, Keycloak and the backend. See [getting-started-backend](getting-started-backend.md) for running the backend locally instead (Keycloak is still needed for that route). How to create test users and assign roles in Keycloak is described in the frontend `README.md` under "Authentication & User Setup".
 
 ### Development
 
@@ -58,9 +63,9 @@ npm run dev
 
 The application will be accessible in your browser at: **http://localhost:5173/**
 
-### One Command Start
+### Frontend via Docker
 
-To build and serve the frontend through nginx via docker compose, run:
+To build and serve only the frontend through nginx via docker compose, run:
 
 ```bash
 docker compose up --build
