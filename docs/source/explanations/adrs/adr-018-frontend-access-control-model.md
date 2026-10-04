@@ -18,10 +18,10 @@ The frontend still has to decide what a user sees: which routes they can open, w
 
 Two things make this more than a simple role check:
 
-- **Project scope.** Most PM surfaces (PM dashboard, data ingestion, blueprints, team management, insights) show data for the globally selected project. A user with the PM role can manage some projects and only be a member of others. Holding the PM role is not enough to manage a project. The backend enforces this with `@projectAuth.canAccessProject`.
+- **Project scope.** Most PM surfaces (PM dashboard, data ingestion, blueprints, team management, insights) show data for the globally selected project. A user with the PM role can manage some projects and only be a member of others. Holding the PM role is not enough to manage a project. For management endpoints the backend enforces this with `@projectAuth.canManageProject` (admin or assigned manager). `canAccessProject` is broader (`canManageProject` or project member) and deliberately admits members on reads.
 - **Several roles per user.** A user can hold more than one realm role, but the UI needs one answer to "what kind of user is this".
 
-The first version of the frontend checked roles in individual pages and components ("Added role based visibility", June 2026). As more roles and pages were added, these checks drifted apart. In July 2026 the rules were moved into one access policy, and the project-manager scoping was added on top of it later.
+A first central policy landed in June 2026 ("Added role based visibility"): a typed `Record<AppRoute, PermissionGroup[]>` with `canAccessRoute`, used by `SideBar` and `AuthGuard`. In July 2026 the project-manager scoping was added on top of it ("New access policy": `MANAGER_ASSIGNMENT_ROUTES`, the `managesSelectedProject` argument and `ManagerAreaGuard`). More manager-scoped routes and the backend enforcement followed in August and September 2026.
 
 Related customer decision (2026-09-29): a regular user belongs to exactly one project at a time, while PMs can be in several. This is why only PM, HR and ADMIN get the global project switcher.
 
@@ -30,7 +30,7 @@ Related customer decision (2026-09-29): a regular user belongs to exactly one pr
 - One place that answers "may this user open this route", used by routing, sidebar, dashboard and shortcuts alike.
 - Adding a protected route without registering its permissions should fail at compile time.
 - PM access to project-scoped pages depends on managing the selected project, not on the role alone.
-- The frontend never widens access beyond what the backend allows. It only hides what would fail anyway.
+- The frontend never widens access beyond what the backend allows. It may be stricter than the backend, but never more permissive.
 - Role information comes from the same source the backend uses, so both sides agree.
 
 ## Considered Options
@@ -92,11 +92,12 @@ Fine-grained capabilities (Option D) would be more precise, but they need a new 
 
 **Positive:**
 - Sidebar, router, dashboard widgets and shortcuts always agree on what a user can reach.
-- A PM who is only a member of the selected project does not see the PM area and cannot open it by URL. This matches the backend, which would answer with 403.
+- A PM who is only a member of the selected project does not see the PM area and cannot open it by URL. For the management-gated endpoints (blueprints, connectors/data ingestion, `/projects/{id}/users`) this matches the backend, which answers with 403 via `canManageProject`.
 - A new protected route cannot be added without deciding who may open it.
 
 **Negative / Trade-offs:**
 - The permission table exists twice, in the backend security config and in `accessPolicy.ts`, and has to be changed in both places.
+- The frontend is intentionally stricter than the backend for some PM surfaces. The insights FAQ and knowledge-gaps reads use `hasAnyRole('ADMIN','PM') and canAccessProject`, so project members pass. The knowledge-requests and onboarding metrics/team-overview endpoints check the role only. For these the manager scoping exists only in the frontend.
 - Only routes wrapped in a guard are blocked by URL. Other restricted routes are only hidden from navigation and rely on the backend to reject the requests.
 - HR is grouped with ADMIN in the frontend, but some backend endpoints are ADMIN-only (for example `/api/v1/admin/projects` and skill management). The frontend handles these cases locally, so the group alone does not fully describe what HR can do.
 - The profile, and with it the permission group and the onboarding flag, is loaded once per session. A role change takes effect after a reload.
@@ -107,6 +108,7 @@ Fine-grained capabilities (Option D) would be more precise, but they need a new 
 - [ ] Wrap `/admin` in a role guard. It is currently only hidden in the sidebar, so a `USER` who opens the URL sees the page shell and gets 403 responses.
 - [ ] Decide whether HR keeps the ADMIN-like route access or gets its own, narrower set (see the comment on `/hire-setup` in `accessPolicy.ts`).
 - [ ] Enforce the one-project-per-user rule for regular users in the backend.
+- [ ] Make server-side manager scoping uniform for the insights and onboarding metrics endpoints, so the backend matches the frontend rule.
 
 ## Implementation Guidelines
 
@@ -123,12 +125,12 @@ Fine-grained capabilities (Option D) would be more precise, but they need a new 
 | Route | USER | PM | HR | ADMIN | PM must manage the selected project |
 |---|---|---|---|---|---|
 | `/`, `/chat`, `/buddy`, `/board`, `/knowledge-base`, `/onboarding`, `/settings`, `/profile` | ✅ | ✅ | ✅ | ✅ | - |
-| `/hire-setup` | | ✅ | ✅ | ✅ | no |
+| `/hire-setup`, `/arrival-steps`, `/starter-work` | | ✅ | ✅ | ✅ | no |
 | `/blueprints`, `/data-ingestion` | | ✅ | ✅ | ✅ | yes |
 | `/pm-dashboard`, `/team-management`, `/insights/faq`, `/insights/knowledge-gaps`, `/insights/knowledge-requests`, `/insights/onboarding` | | ✅ | ✅ | ✅ | yes |
 | `/admin` | | | ✅ | ✅ | - |
 
-`/arrival-steps` and `/starter-work` only redirect to `/hire-setup` and share its entry. The source of truth is always `accessPolicy.ts`. Update this table when it changes.
+`/arrival-steps`, `/starter-work` and `/profile` are pure redirects but have their own entries in `accessPolicy.ts`. The source of truth is always `accessPolicy.ts`. Update this table when it changes.
 
 ### Where the policy is applied
 
