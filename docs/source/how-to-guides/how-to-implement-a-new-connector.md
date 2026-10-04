@@ -4,7 +4,7 @@
 
 This guide describes how to add a new data source (a connector such as GitHub, Jira, Confluence or Notion) to the SprintStart frontend, and what the backend and the AI service have to provide for it.
 
-All connector code lives in `sprintstart-frontend/src/features/data-ingestion/connectors/`. The data ingestion page, the add-source flow, the create-project wizard, the knowledge base and the chat read the connectors from one registry. They do not branch on the source system. A new connector is therefore one folder plus one registry entry, and the compiler lists what is still missing.
+The registry and the per-connector UI code live in `sprintstart-frontend/src/features/data-ingestion/connectors/`. The data ingestion page, the add-source flow, the create-project wizard, the knowledge base and the chat read the connectors from this registry. Most of the code does not branch on the source system. A new connector is therefore one folder plus one registry entry, and the compiler lists most of what is still missing. A few places still name connectors one by one and are not caught by the compiler; step 6 lists them.
 
 ```{note}
 The registry comes with the data ingestion refactor of the frontend. Paths and type names below refer to `sprintstart-frontend`.
@@ -31,18 +31,21 @@ connectors/
 ├── types.ts                  # ConnectorDefinition and the supports it is made of
 ├── registry.ts               # CONNECTORS, CONNECTOR_LIST, getConnector and derived lists
 ├── draft.ts                  # DraftSource union, what the add-source flow stages
+├── actionContext.ts          # requireProjectId, shared by the actions
+├── projectSources.ts         # shared connection support for connectors that are project sources (GitHub, Upload)
+├── knowledgeBaseLink.ts      # builds the knowledge base link of a source from knowledgeBase.scopeOf
 └── <connector>/
     ├── definition.ts         # the ConnectorDefinition
     ├── draft.ts              # staged-source type, duplicate check, connect call
     ├── DraftForm.tsx         # add-source form, holds its own state, reports drafts
-    └── DetailsSection.tsx    # the connector's rows in the source details panel
+    └── DetailsSection.tsx    # optional, the connector's rows in the source details panel
 ```
 
 A definition declares the following. The right column says who reads it, so you can tell what breaks when a field is wrong.
 
 | Field | Declares | Read by |
 | --- | --- | --- |
-| `meta` | label, card name, noun, icon, description, backend connector id | cards, type grid, run labels, Manage connectors modal |
+| `meta` | label, card name, noun, icon, description, backend connector id, optional `meta.connector` (`label`, `description`) for the Manage connectors modal | cards, type grid, run labels, Manage connectors modal |
 | `identity`, `toDetails`, `fallbackBackendStatus` | the card's key and name, its source specific details, its status when there is no status row | `createDataSource`, the one generic card mapper |
 | `runFallback` (optional) | how a card without a status row reads its artifact total and sync time off the newest run | `createDataSource` |
 | `resourceSyncTimes`, `runReferences` | the last sync time per resource, the references a run carries as its `sourceId` | source details panel, run labels |
@@ -152,11 +155,21 @@ Add the definition to `CONNECTORS` in `registry.ts`. The type of the record make
 
 ### 6. Finish the parts that still name connectors one by one
 
-Three places still know the connectors individually. Keep this list short when touching the code.
+Some places still know the connectors individually, and the compiler does not report them. Keep this list short when touching the code.
+
+**Data ingestion**
 
 1. **`SourceDetails` union** in `data-ingestion/types.ts`, plus an accessor in `sourceDetails.ts` (`exampleConnectionOf`). The definition's actions read the connector's details through it.
 2. **Card assembly**: `buildSources.ts` builds the cards from the status rows and the connection records, and `useIngestionData` needs one more connection query next to the existing ones.
 3. **Run details**: `buildOriginRow` in `RunDetailsPanel.tsx` shows the connector specific origin of a run (owner, domain, space). Add a row if the connector has one.
+
+**Knowledge base and chat**
+
+4. **URL state**: `knowledge-base/hooks/useKnowledgeBaseUrlState.ts` parses the `repositories` param only while GITHUB is among the selected sources, and `format` only while UPLOAD is. A connector whose `knowledgeBase.scopeOf` returns repositories gets a link from `knowledgeBaseLink.ts` whose `repositories` narrowing is dropped on arrival, unless the parser accepts it for the new system.
+5. **Facets**: `knowledge-base/hooks/useKnowledgeBase.ts` offers the repository facet options only for GITHUB. Extend it if the connector's artifacts belong to a repository.
+6. **Artifact metadata**: `knowledge-base/githubMetadata.ts` parses the metadata of GitHub artifacts. A connector with its own metadata needs a parser and a view (`knowledgeBase.metadataView`) of its own.
+7. **Chat sources**: `chatbot/hooks/useAvailableSources.ts` always offers UPLOAD (`ALWAYS_AVAILABLE`) and the enabled connectors on top. Only touch it if the new system has no connector to enable.
+8. **GITHUB fallbacks**: `ingestionService` and `knowledgeService` fall back to GITHUB where the backend sends no `sourceSystem`. The backend has to send it for the new connector, otherwise its rows show up as GitHub.
 
 ### 7. Tests
 
@@ -189,7 +202,7 @@ The frontend only works against the following contract. Agree on it before the c
 
 **Backend**
 
-- The connector appears in `GET /api/v1/connectors` with a lowercase id equal to `meta.connectorId`. Its sources can be switched with `patchConnectorSources`.
+- The connector appears in `GET /api/v1/connectors` with a lowercase id equal to `meta.connectorId`. Its sources can be switched with `PATCH /api/v1/connectors/{id}/sources/status`.
 - `GET /api/v1/ingestion-sources/status` returns one row per source of the project, with `sourceSystem`, `sourceId`, health, counters and `artifactCount`.
 - Runs carry `sourceSystem` and can be filtered by `repositoryId` or `sourceRef`, whichever the definition's `runFilter` names.
 - Endpoints to connect, to update or sync, and to unlink a single source. If the connector has a schedule, either its own endpoint or the schedule on the connection record (as Confluence does).
@@ -215,5 +228,6 @@ The data ingestion page loads through `useIngestionData` (TanStack Query). The s
 - [ ] Service with documented functions and tests
 - [ ] `definition.ts`, `draft.ts`, `DraftForm.tsx` (and `DetailsSection.tsx` if needed)
 - [ ] `SourceDetails` union, accessor, card assembly, connection query, run origin row
+- [ ] Knowledge base wiring checked (URL state, facets, metadata) and chat source list
 - [ ] Tests extended, a11y test for the form, all five checks green
 - [ ] Backend contract confirmed, AI filter flag set only after the AI change is deployed
