@@ -72,7 +72,7 @@ used with TypeScript, we decided to use it as our script language instead of Jav
 - Some team members will have to catch up on missing knowledge
 
 **Follow-up actions:**
-- [ ] Update ADR status from `Proposed` to `Accepted`
+- [x] Update ADR status from `Proposed` to `Accepted`
 
 ## Links
 
