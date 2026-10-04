@@ -19,6 +19,7 @@
 | [adr-014-treesitter-ast-based-code-chunking](adr-014-treesitter-ast-based-code-chunking.md) | AST-Based Code Chunking | ✅ Accepted |
 | [adr-015-use-keycloak-authentication-authorization](adr-015-use-keycloak-authentication-authorization.md) | Keycloak auth  | ✅ Accepted |
 | [adr-016-canonical-artifact-schema-v1](adr-016-canonical-artifact-schema-v1.md) | Canonical artifact schema v1 | ✅ Accepted |
+| [adr-017-frontend-server-state-tanstack-query](adr-017-frontend-server-state-tanstack-query.md) | TanStack Query for Frontend Server State | ✅ Accepted |
 | [adr-018-frontend-access-control-model](adr-018-frontend-access-control-model.md) | Frontend Access Control Model | ✅ Accepted |
 | [adr-019-keycloakify-login-theme](adr-019-keycloakify-login-theme.md) | Custom Keycloak Login Theme with Keycloakify | ✅ Accepted |
 ```{toctree}
@@ -40,6 +41,7 @@ adr-013-wiki-structure
 adr-014-treesitter-ast-based-code-chunking
 adr-015-use-keycloak-authentication-authorization
 adr-016-canonical-artifact-schema-v1
+adr-017-frontend-server-state-tanstack-query
 adr-018-frontend-access-control-model
 adr-019-keycloakify-login-theme
 ```
