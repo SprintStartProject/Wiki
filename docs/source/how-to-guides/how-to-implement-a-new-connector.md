@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This guide describes how to add a new data source (a connector such as GitHub, Jira, Confluence or Notion) to the SprintStart frontend, and what the backend and the AI service have to provide for it.
+This guide describes how to add a new data source (a connector such as GitHub, Bitbucket, Jira, Confluence or Notion) to the SprintStart frontend, and what the backend and the AI service have to provide for it.
 
 The registry and the per-connector UI code live in `sprintstart-frontend/src/features/data-ingestion/connectors/`. The data ingestion page, the add-source flow, the create-project wizard, the knowledge base and the chat read the connectors from this registry. Most of the code does not branch on the source system. A new connector is therefore one folder plus one registry entry, and the compiler lists most of what is still missing. A few places still name connectors one by one and are not caught by the compiler; step 6 lists them.
 
@@ -19,6 +19,7 @@ The registry comes with the data ingestion refactor of the frontend. Paths and t
   - **Jira**: an instance with a stored credential, ingested as a whole, with a schedule endpoint.
   - **Confluence**: a connection owned by one project, with a synchronous sync and a schedule stored on the connection record.
   - **GitHub**: a repository shared between projects, discovered through a picker, with per-resource sync times.
+  - **Bitbucket**: the GitHub shape for a Bitbucket Cloud workspace. Repositories are shared between projects and discovered through the same picker, and the stored Atlassian credential is shared with Jira and Confluence. It syncs pull requests only.
   - **Upload**: no upstream at all, so no actions.
 
 ---
@@ -32,13 +33,14 @@ connectors/
 ├── registry.ts               # CONNECTORS, CONNECTOR_LIST, getConnector and derived lists
 ├── draft.ts                  # DraftSource union, what the add-source flow stages
 ├── actionContext.ts          # requireProjectId, shared by the actions
-├── projectSources.ts         # shared connection support for connectors that are project sources (GitHub, Upload)
+├── projectSources.ts         # shared connection support for connectors that are project sources (GitHub, Bitbucket, Upload)
 ├── knowledgeBaseLink.ts      # builds the knowledge base link of a source from knowledgeBase.scopeOf
 └── <connector>/
     ├── definition.ts         # the ConnectorDefinition
     ├── draft.ts              # staged-source type, duplicate check, connect call
     ├── DraftForm.tsx         # add-source form, holds its own state, reports drafts
-    └── DetailsSection.tsx    # optional, the connector's rows in the source details panel
+    ├── DetailsSection.tsx    # optional, the connector's rows in the source details panel
+    └── *MetadataView.tsx     # optional, view for artifacts that are metadata only (knowledgeBase.metadataView)
 ```
 
 A definition declares the following. The right column says who reads it, so you can tell what breaks when a field is wrong.
@@ -54,7 +56,7 @@ A definition declares the following. The right column says who reads it, so you 
 | `DetailsSection` | the connector's identity rows in the details panel, or `null` | `SourceDetailsPanel` |
 | `runFilter` | which run query parameter (`repositoryId` or `sourceRef`) scopes the history to one source, and the value | run history filter |
 | `draft` | add-source form, staged row wording, duplicate check, connect call, optional owner assignment | add-source flow, staged list, wizard review |
-| `knowledgeBase` | facet label and order, icon, "Open in ..." text, optional metadata view, optional scope for the link from a source to its artifacts | knowledge base filters, artifact viewer, source details panel |
+| `knowledgeBase` | facet label and order, icon, "Open in ..." text, optional `repositoryFacet` flag, optional metadata view, optional scope for the link from a source to its artifacts | knowledge base filters and URL state, artifact viewer, source details panel |
 | `chat` | whether the chat source filter offers it, how a cited URL is matched to it | chat composer, citation drawer |
 
 ---
@@ -88,7 +90,7 @@ export const exampleConnector: ConnectorDefinition<ExampleConnectionDto, Example
     label: "Example",
     name: "Example Workspace",
     noun: { singular: "workspace", plural: "workspaces" },
-    icon: Box, // any IconComponent, a hand made SVG works too
+    icon: Box, // any IconComponent, a hand made SVG works too (see components/icons/BitbucketIcon.tsx)
     description: "Indexes pages from Example workspaces.",
   },
   chat: {
@@ -147,6 +149,7 @@ Rules of thumb:
 
 - Anything the connector has no use for is left out (`actions.schedule`, `runFilter`, `DetailsSection: null`), not stubbed with a function that does nothing.
 - `ConnectionSupport.failureMessage` decides whether a failed load is reported. Leave it out where the endpoint may be off limits to some users (an HR user without the PM role), and the cards are built without the records instead.
+- Set `knowledgeBase.repositoryFacet: true` if the connector's artifacts belong to a repository. The knowledge base then offers the repository facet and keeps the `repos` URL param while the connector is among the selected sources (`hasRepositoryFacet` in `registry.ts`). A `knowledgeBase.scopeOf` that returns repositories only works together with this flag, because the link it builds is otherwise stripped of its `repositories` narrowing on arrival.
 - The functions in the definition types are declared as methods on purpose. That keeps a definition for one connection record assignable to the registry's view of all of them.
 
 ### 5. Register it
@@ -165,11 +168,11 @@ Some places still know the connectors individually, and the compiler does not re
 
 **Knowledge base and chat**
 
-4. **URL state**: `knowledge-base/hooks/useKnowledgeBaseUrlState.ts` parses the `repositories` param only while GITHUB is among the selected sources, and `format` only while UPLOAD is. A connector whose `knowledgeBase.scopeOf` returns repositories gets a link from `knowledgeBaseLink.ts` whose `repositories` narrowing is dropped on arrival, unless the parser accepts it for the new system.
-5. **Facets**: `knowledge-base/hooks/useKnowledgeBase.ts` offers the repository facet options only for GITHUB. Extend it if the connector's artifacts belong to a repository.
-6. **Artifact metadata**: `knowledge-base/githubMetadata.ts` parses the metadata of GitHub artifacts. A connector with its own metadata needs a parser and a view (`knowledgeBase.metadataView`) of its own.
-7. **Chat sources**: `chatbot/hooks/useAvailableSources.ts` always offers UPLOAD (`ALWAYS_AVAILABLE`) and the enabled connectors on top. Only touch it if the new system has no connector to enable.
-8. **GITHUB fallbacks**: `ingestionService` and `knowledgeService` fall back to GITHUB where the backend sends no `sourceSystem`. The backend has to send it for the new connector, otherwise its rows show up as GitHub.
+4. **Artifact metadata**: `knowledge-base/githubMetadata.ts` parses the metadata of GitHub and Bitbucket artifacts. It also reads the repository an artifact belongs to (shown in the artifact list and viewer) and decides in `matchesRepository` which artifacts survive a repository selection. That function names GITHUB and BITBUCKET one by one and lets every other system through. A connector with `repositoryFacet: true` has to be added there, and a connector with its own metadata needs a parser and a view (`knowledgeBase.metadataView`) of its own.
+5. **Chat sources**: `chatbot/hooks/useAvailableSources.ts` always offers UPLOAD (`ALWAYS_AVAILABLE`) and the enabled connectors on top. Only touch it if the new system has no connector to enable.
+6. **GITHUB fallbacks**: `ingestionService` and `knowledgeService` fall back to GITHUB where the backend sends no `sourceSystem`. The backend has to send it for the new connector, otherwise its rows show up as GitHub.
+
+The knowledge base URL state and the repository facet need no code of their own: they follow the `knowledgeBase.repositoryFacet` flag of the definition (step 4).
 
 ### 7. Tests
 
@@ -228,6 +231,6 @@ The data ingestion page loads through `useIngestionData` (TanStack Query). The s
 - [ ] Service with documented functions and tests
 - [ ] `definition.ts`, `draft.ts`, `DraftForm.tsx` (and `DetailsSection.tsx` if needed)
 - [ ] `SourceDetails` union, accessor, card assembly, connection query, run origin row
-- [ ] Knowledge base wiring checked (URL state, facets, metadata) and chat source list
+- [ ] Knowledge base wiring checked (`repositoryFacet` flag, artifact metadata) and chat source list
 - [ ] Tests extended, a11y test for the form, all five checks green
 - [ ] Backend contract confirmed, AI filter flag set only after the AI change is deployed
