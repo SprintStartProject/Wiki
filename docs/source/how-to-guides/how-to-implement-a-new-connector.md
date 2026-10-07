@@ -168,9 +168,11 @@ Some places still know the connectors individually, and the compiler does not re
 
 **Knowledge base and chat**
 
-4. **Artifact metadata**: `knowledge-base/githubMetadata.ts` parses the metadata of GitHub and Bitbucket artifacts. It also reads the repository an artifact belongs to (shown in the artifact list and viewer) and decides in `matchesRepository` which artifacts survive a repository selection. That function names GITHUB and BITBUCKET one by one and lets every other system through. A connector with `repositoryFacet: true` has to be added there, and a connector with its own metadata needs a parser and a view (`knowledgeBase.metadataView`) of its own.
-5. **Chat sources**: `chatbot/hooks/useAvailableSources.ts` always offers UPLOAD (`ALWAYS_AVAILABLE`) and the enabled connectors on top. Only touch it if the new system has no connector to enable.
-6. **GITHUB fallbacks**: `ingestionService` and `knowledgeService` fall back to GITHUB where the backend sends no `sourceSystem`. The backend has to send it for the new connector, otherwise its rows show up as GitHub.
+4. **URL state**: `knowledge-base/hooks/useKnowledgeBaseUrlState.ts` parses the `repositories` param only while GITHUB is among the selected sources, and `format` only while UPLOAD is. A connector whose `knowledgeBase.scopeOf` returns repositories gets a link from `knowledgeBaseLink.ts` whose `repositories` narrowing is dropped on arrival, unless the parser accepts it for the new system.
+5. **Facets**: `knowledge-base/hooks/useKnowledgeBase.ts` offers the repository facet options only for GITHUB. Extend it if the connector's artifacts belong to a repository.
+6. **Artifact metadata**: `knowledge-base/githubMetadata.ts` parses the metadata of GitHub and Bitbucket artifacts. It also reads the repository an artifact belongs to (shown in the artifact list and viewer) and decides in `matchesRepository` which artifacts survive a repository selection. That function names GITHUB and BITBUCKET one by one and lets every other system through. A connector with `repositoryFacet: true` has to be added there, and a connector with its own metadata needs a parser and a view (`knowledgeBase.metadataView`) of its own.
+7. **Chat sources**: `chatbot/hooks/useAvailableSources.ts` always offers UPLOAD (`ALWAYS_AVAILABLE`) and the enabled connectors on top. Only touch it if the new system has no connector to enable.
+8. **GITHUB fallbacks**: `ingestionService` and `knowledgeService` fall back to GITHUB where the backend sends no `sourceSystem`. The backend has to send it for the new connector, otherwise its rows show up as GitHub.
 
 The knowledge base URL state and the repository facet need no code of their own: they follow the `knowledgeBase.repositoryFacet` flag of the definition (step 4).
 

@@ -9,6 +9,10 @@
 
 ---
 
+```{note}
+This report is a historical record of Sprint 1 (June 2026): it predates the connector-based ingestion and the faceted Knowledge Base. For the feature as it works today, see [Knowledge Base](../references/knowledge-base.md).
+```
+
 ## 1. Test Goal
 
 The goal of this usability test was to evaluate whether a student new-joiner can understand and use the current SprintStart onboarding flow.
