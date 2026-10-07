@@ -90,4 +90,7 @@ The frontend repository contains the detailed developer documentation:
 - `README.md`: setup, scripts and developer notes
 - `docs/FRONTEND_ARCHITECTURE.md`: architecture, routing, state and API layer
 - `docs/FRONTEND_CODING_STANDARDS.md`: TypeScript, React, Tailwind and accessibility rules
+- `docs/FRONTEND_DOCUMENTATION_GUIDELINES.md`: TSDoc and comment rules
 - `docs/testing_strategy.md`: Vitest, MSW and vitest-axe setup
+- `docs/UI_DESIGN_DECISIONS.md`: why the UI rules exist, and the open UI consistency items
+- `AGENTS.md`: short entry point for humans and AI agents, with pointers to the rules above
