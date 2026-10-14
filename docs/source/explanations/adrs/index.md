@@ -22,6 +22,7 @@
 | [adr-017-frontend-server-state-tanstack-query](adr-017-frontend-server-state-tanstack-query.md) | TanStack Query for Frontend Server State | ✅ Accepted |
 | [adr-018-frontend-access-control-model](adr-018-frontend-access-control-model.md) | Frontend Access Control Model | ✅ Accepted |
 | [adr-019-keycloakify-login-theme](adr-019-keycloakify-login-theme.md) | Custom Keycloak Login Theme with Keycloakify | ✅ Accepted |
+| [adr-020-llm-context-aware-chunking](adr-020-llm-context-aware-chunking.md) | LLM-Based Context-Aware Chunking | ✅ Accepted |
 ```{toctree}
 :hidden:
 
@@ -44,4 +45,5 @@ adr-016-canonical-artifact-schema-v1
 adr-017-frontend-server-state-tanstack-query
 adr-018-frontend-access-control-model
 adr-019-keycloakify-login-theme
+adr-020-llm-context-aware-chunking
 ```
